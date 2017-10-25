@@ -16,7 +16,7 @@ import { CustomerService } from './customer.services'
                  <span class="badge">{{customer.a}}</span> {{customer.PlistaProduct}}
                 </li>
               </ul>
-          <customer-detail></customer-detail>
+          <customer-info [customer]="selectedCustomer" ></customer-info>
               `,
    styles: [`
     .selected {
@@ -74,9 +74,11 @@ export class AppComponent {
    titel = 'Customer Info';
    //The CUSTOMERS constant is exported so it can be imported elsewhere, such as the CustomerService.In app.component.ts, where you cut the CUSTOMERS array, add an uninitialized customers property:
    customers: Customer[];
- 
   selectedCustomer: Customer;
 
+  onSelect(customer: Customer): void {
+    this.selectedCustomer = customer;
+  }
   constructor(private customerService: CustomerService) { }
  
   getCustomers(): void {
@@ -88,9 +90,7 @@ export class AppComponent {
   }
   
   
-  onSelect(customer: Customer): void {
-    this.selectedCustomer = customer;
-  }
+
 
 
 }
